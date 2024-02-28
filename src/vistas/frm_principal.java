@@ -3,16 +3,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package vistas;
+import java.util.LinkedList;
 
-/**
- *
- * @author Temporal
- */
+import javax.swing.JOptionPane;
+
+import controlador.cls_estudiante;
+
 public class frm_principal extends javax.swing.JFrame {
 
-    /**
-     * Creates new form frm_principal
-     */
+    LinkedList<cls_estudiante> estudiante = new LinkedList<>();
     public frm_principal() {
         initComponents();
     }
@@ -101,6 +100,11 @@ public class frm_principal extends javax.swing.JFrame {
         btn_nuevo.setText("Nuevo");
 
         btn_registrar.setText("Registrar");
+        btn_registrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_registrarActionPerformed(evt);
+            }
+        });
 
         btn_asistencia.setText("Asistencia");
 
@@ -169,9 +173,9 @@ public class frm_principal extends javax.swing.JFrame {
                     .addComponent(jLabel6)
                     .addComponent(cbx_sexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_nuevo)
-                    .addComponent(btn_registrar))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btn_registrar)
+                    .addComponent(btn_nuevo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btn_asistencia)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -275,6 +279,20 @@ public class frm_principal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btn_registrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_registrarActionPerformed
+        fnt_registrar(
+            Integer.valueOf(txt_id.getText()),
+            txt_nombre.getText(),
+            txt_contacto.getText(),
+            txt_curso.getText(),
+            txt_correo.getText(),
+            (String)cbx_sexo.getSelectedItem());
+    }//GEN-LAST:event_btn_registrarActionPerformed
+
+    private void fnt_registrar(int id_int, String nombre_str, String contacto_str, String curso_str, String correo_str, String sexo_str){
+        estudiante.add(new cls_estudiante(id_int, nombre_str, contacto_str, curso_str, correo_str, sexo_str));
+        JOptionPane.showMessageDialog(rootPane, "Registro exitoso.");
+    }
     /**
      * @param args the command line arguments
      */
